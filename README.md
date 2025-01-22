@@ -1,6 +1,11 @@
 # WPF Darts
 Ez a projekt egy WPF-ben megvalósított darts játék, amely három különböző játékmódot tartalmaz: **501**, **Around the Clock** és **Shanghai**. A játék lehetőséget biztosít a játékosok számára, hogy különböző szabályrendszerek alapján mérkék össze tudásukat.
 
+## Működése
+- Az XAML felületen egy dartstáblára az egérrel lehet célozni
+- A célzást nehezíti egy "kurzor rázkódás"
+- Játékmód választási lehetőség
+
 ## A játékmódok
 
 ### 501
