@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-Z:\2024-2025\c#\Darts\WPFDarts\obj\Debug\net8.0-windows\
+Z:\Pintér Bálint\tgfdg\dotnet\dotnet\WPFDarts\WPFDarts\obj\Debug\net8.0-windows\
 WPFDarts
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-Z:\2024-2025\c#\Darts\WPFDarts\App.xaml
+Z:\Pintér Bálint\tgfdg\dotnet\dotnet\WPFDarts\WPFDarts\App.xaml
 11407045341
 
 6113572784
 198-556154604
 MainWindow.xaml;
 
-False
+True
 
