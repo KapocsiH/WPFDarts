@@ -40,5 +40,10 @@
                 <TextBlock Text="501" Foreground="White" Grid.Row="2" Grid.Column="1"/>
             </Grid>
         </StackPanel>
+        <TextBlock Text="Player 1" Foreground="White" Grid.Row="1" Grid.Column="0"/>
+        <TextBlock Text="1" Foreground="White" Grid.Row="1" Grid.Column="1" Name="Player1Target"/>
+
+        <TextBlock Text="Player 2" Foreground="White" Grid.Row="2" Grid.Column="0"/>
+        <TextBlock Text="1" Foreground="White" Grid.Row="2" Grid.Column="1" Name="Player2Target"/>
     </Grid>
 </Window>
