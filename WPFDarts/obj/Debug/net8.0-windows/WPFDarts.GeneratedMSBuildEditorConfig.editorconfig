@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WPFDarts
-build_property.ProjectDir = Z:\2024-2025\c#\Darts\WPFDarts\
+build_property.ProjectDir = Z:\Pintér Bálint\tgfdg\dotnet\dotnet\WPFDarts\WPFDarts\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
