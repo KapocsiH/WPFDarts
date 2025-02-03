@@ -482,3 +482,38 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Ignore Visual Studio specific files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore build outputs
+bin/
+obj/
+
+# Ignore NuGet packages
+*.nupkg
+packages/
+project.lock.json
+project.assets.json
+
+# Ignore debugging files
+*.pdb
+
+# Ignore compiled files
+*.exe
+*.dll
+
+# Ignore temporary files
+*.tmp
+*.log
+
+# Ignore IDE settings
+*.VC.db
+*.VC.opendb
+
+# Ignore local environment settings
+.env
