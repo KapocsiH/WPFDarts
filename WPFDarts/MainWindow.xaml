@@ -5,45 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFDarts"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" FontSize="16">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-
-        <!-- Dartboard Image -->
-        <Image Source="Blade6.jpg" Grid.Row="0" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-        <!-- Score Table -->
-        <StackPanel Grid.Row="1" Orientation="Vertical" Background="Black">
-            <TextBlock Text="Darts Scoreboard" FontSize="24" Foreground="White" HorizontalAlignment="Center"/>
-
-            <Grid Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Text="Player" Foreground="White" FontWeight="Bold" Grid.Column="0"/>
-                <TextBlock Text="Score" Foreground="White" FontWeight="Bold" Grid.Column="1"/>
-
-                <TextBlock Text="Player 1" Foreground="White" Grid.Row="1" Grid.Column="0"/>
-                <TextBlock Text="501" Foreground="White" Grid.Row="1" Grid.Column="1"/>
-
-                <TextBlock Text="Player 2" Foreground="White" Grid.Row="2" Grid.Column="0"/>
-                <TextBlock Text="501" Foreground="White" Grid.Row="2" Grid.Column="1"/>
-            </Grid>
-        </StackPanel>
-        <TextBlock Text="Player 1" Foreground="White" Grid.Row="1" Grid.Column="0"/>
-        <TextBlock Text="1" Foreground="White" Grid.Row="1" Grid.Column="1" Name="Player1Target"/>
-
-        <TextBlock Text="Player 2" Foreground="White" Grid.Row="2" Grid.Column="0"/>
-        <TextBlock Text="1" Foreground="White" Grid.Row="2" Grid.Column="1" Name="Player2Target"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Darts" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
+        <Button Content="501" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="24" Width="200" BorderThickness="3"/>
+        <Button Content="Around the Clock" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="24" Width="200" BorderThickness="3"/>
+        <Button Content="Shanghai" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="24" Width="200" BorderThickness="3"/>
+        <Image Source="Blade6.jpg" Grid.Column="1" Grid.RowSpan="4" Height="500" Width="500" Margin="150,76,-117,-142" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
