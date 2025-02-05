@@ -8,7 +8,7 @@
         Title="_501" Height="450" Width="800">
     <Grid>
         <!-- Dartboard Image -->
-        <Image Name="DartBoard" Source="Blade6.jpg" Width="400" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+        <Image Name="DartBoard" Source="Blade6.jpg" Width="400" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="DartBoard_MouseLeftButtonDown"/>
 
         <!-- Score Display -->
         <TextBlock Name="ScoreText" Text="Score: 0" FontSize="24" FontWeight="Bold"
