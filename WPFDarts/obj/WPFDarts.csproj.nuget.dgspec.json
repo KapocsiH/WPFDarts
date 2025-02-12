@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "Z:\\Pintér Bálint\\tgfdg\\dotnet\\dotnet\\WPFDarts\\WPFDarts\\WPFDarts.csproj": {}
+    "Z:\\Pintér Bálint\\idei\\python\\proejt\\WPFDarts\\WPFDarts\\WPFDarts.csproj": {}
   },
   "projects": {
-    "Z:\\Pintér Bálint\\tgfdg\\dotnet\\dotnet\\WPFDarts\\WPFDarts\\WPFDarts.csproj": {
+    "Z:\\Pintér Bálint\\idei\\python\\proejt\\WPFDarts\\WPFDarts\\WPFDarts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Z:\\Pintér Bálint\\tgfdg\\dotnet\\dotnet\\WPFDarts\\WPFDarts\\WPFDarts.csproj",
+        "projectUniqueName": "Z:\\Pintér Bálint\\idei\\python\\proejt\\WPFDarts\\WPFDarts\\WPFDarts.csproj",
         "projectName": "WPFDarts",
-        "projectPath": "Z:\\Pintér Bálint\\tgfdg\\dotnet\\dotnet\\WPFDarts\\WPFDarts\\WPFDarts.csproj",
+        "projectPath": "Z:\\Pintér Bálint\\idei\\python\\proejt\\WPFDarts\\WPFDarts\\WPFDarts.csproj",
         "packagesPath": "C:\\Users\\pinter.balint\\.nuget\\packages\\",
-        "outputPath": "Z:\\Pintér Bálint\\tgfdg\\dotnet\\dotnet\\WPFDarts\\WPFDarts\\obj\\",
+        "outputPath": "Z:\\Pintér Bálint\\idei\\python\\proejt\\WPFDarts\\WPFDarts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
