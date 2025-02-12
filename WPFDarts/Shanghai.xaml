@@ -8,12 +8,15 @@
         Title="Shanghai" Height="450" Width="800">
     <Canvas>
         <Image Name="DartBoard" Source="Blade6.jpg" Width="400" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" MouseLeftButtonDown="DartBoard_MouseLeftButtonDown" Canvas.Left="200" Canvas.Top="17"/>
-        <!--<Ellipse Width="288" Height="288" Fill="black" Opacity="0.5" Canvas.Left="56" Canvas.Top="56" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Ellipse Width="274" Height="274" Fill="White" Opacity="0.5" Canvas.Left="63" Canvas.Top="63" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Ellipse Width="180" Height="180" Fill="green" Opacity="0.2" Canvas.Left="111" Canvas.Top="110" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Ellipse Width="166" Height="166" Fill="Red" Opacity="0.2" Canvas.Left="117" Canvas.Top="117" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Ellipse Width="28" Height="28" Fill="Green" Opacity="0.2" Canvas.Left="186" Canvas.Top="186" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Ellipse Width="12" Height="12" Fill="Red" Opacity="0.2" Canvas.Left="194" Canvas.Top="194" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
+        <Ellipse Name="playZone" Width="287" Height="289" Fill="Black" Opacity="0.1" Canvas.Left="256" Canvas.Top="72" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Ellipse Name="doubleZone" Width="288" Height="289" Fill="LightCyan" Opacity="0.9" Canvas.Left="256" Canvas.Top="72" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Ellipse Name="normalZoneOuter" Width="273" Height="274" Fill="Yellow" Opacity="0.9" Canvas.Left="264" Canvas.Top="80" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Ellipse Name="tripleZone" Width="181" Height="181" Fill="LightCyan" Opacity="0.9" Canvas.Left="309" Canvas.Top="127" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Ellipse Name="normalZoneInner" Width="165" Height="165" Fill="Yellow" Opacity="0.9" Canvas.Left="318" Canvas.Top="135" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Ellipse Name="bullsseyeOuter" Width="28" Height="28" Fill="LightCyan" Opacity="0.9" Canvas.Left="386" Canvas.Top="203" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Ellipse Name="bullseyeInner" Width="12" Height="12" Fill="Yellow" Opacity="0.9" Canvas.Left="394" Canvas.Top="211" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
         <Polygon Points="410,225 600,195 600,255" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
         <Polygon Points="405,225 600,128 600,195" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
         <Polygon Points="409.9,223 600,30 600,126" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
