@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFDarts"
         mc:Ignorable="d"
-        Title="Shanghai" Height="900" Width="1600">
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Title="Shanghai" Height="900" Width="1600" FontSize="32">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Image Name="DartboardImage" Source="Blade6.jpg" MouseLeftButtonDown="DartboardImage_MouseLeftButtonDown"/>
+        <Label Name="cursorp" Grid.Column="1" Content=""/>
     </Grid>
 </Window>
