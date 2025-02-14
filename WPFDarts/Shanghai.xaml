@@ -5,37 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFDarts"
         mc:Ignorable="d"
-        Title="Shanghai" Height="450" Width="800">
-    <Canvas>
-        <Image Name="DartBoard" Source="Blade6.jpg" Width="400" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" MouseLeftButtonDown="DartBoard_MouseLeftButtonDown" Canvas.Left="200" Canvas.Top="17"/>
-        <Ellipse Name="playZone" Width="287" Height="289" Fill="Black" Opacity="0.1" Canvas.Left="256" Canvas.Top="72" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Ellipse Name="doubleZone" Width="288" Height="289" Fill="LightCyan" Opacity="0.9" Canvas.Left="256" Canvas.Top="72" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Ellipse Name="normalZoneOuter" Width="273" Height="274" Fill="Yellow" Opacity="0.9" Canvas.Left="264" Canvas.Top="80" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Ellipse Name="tripleZone" Width="181" Height="181" Fill="LightCyan" Opacity="0.9" Canvas.Left="309" Canvas.Top="127" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Ellipse Name="normalZoneInner" Width="165" Height="165" Fill="Yellow" Opacity="0.9" Canvas.Left="318" Canvas.Top="135" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Ellipse Name="bullsseyeOuter" Width="28" Height="28" Fill="LightCyan" Opacity="0.9" Canvas.Left="386" Canvas.Top="203" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Ellipse Name="bullseyeInner" Width="12" Height="12" Fill="Yellow" Opacity="0.9" Canvas.Left="394" Canvas.Top="211" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-
-        <Polygon Points="410,225 600,195 600,255" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="405,225 600,128 600,195" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="409.9,223 600,30 600,126" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="410,222 600,-170 600,31" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408.85,222 600,-1100 600,-160" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408,224 470,-170 376,31" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408,224 202,-170 305,-400" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408,224 8,-170 309,31" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="407,224 100,70 299,115" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408,224 100,71 209,194" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="410,225 140,184 200,257" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="409,225 140,267 109,375" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="410,223 140,361 200,430" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="409,223 140,749 109,525" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408,223 140,1890 200,636" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408,223 323,749 435,400" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408,224 1250,1890 473,636" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408,224 673,749 582,400" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408,224 950,773 673,360" Fill="pink" Opacity="0.5" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-        <Polygon Points="408,224 573,309 582,253" Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Canvas.Top="-7" VerticalAlignment="Top" Canvas.Left="-7"/>
-    </Canvas>
+        Title="Shanghai" Height="900" Width="1600">
+    <Grid>
+        <Image Name="DartboardImage" Source="Blade6.jpg" MouseLeftButtonDown="DartboardImage_MouseLeftButtonDown"/>
+    </Grid>
 </Window>

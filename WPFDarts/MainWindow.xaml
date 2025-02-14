@@ -21,7 +21,7 @@
         <Label Content="Darts" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
         <Button Content="501" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="24" Width="200" BorderThickness="3"/>
         <Button Content="Around the Clock" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="24" Width="200" BorderThickness="3"/>
-        <Button Content="Shanghai" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="24" Width="200" BorderThickness="3"/>
+        <Button Content="Shanghai" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="24" Width="200" BorderThickness="3" Click="Button_Click"/>
         <Image Source="Blade6.jpg" Grid.Column="1" Grid.RowSpan="4" Height="500" Width="500" Margin="150,76,-117,-142" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

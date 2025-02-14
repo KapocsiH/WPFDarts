@@ -56,7 +56,7 @@ namespace WPFDarts
             return distanceFromCenter;
         }
 
-        private double PointSector(double distance, //TODO zónát átadni)
+        private double PointSector(double distance)
         {
             int score = 0;
 
