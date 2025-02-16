@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WPFDarts")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c027db2219155aaa4f1aa6df56ae1f24f62061a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4963dd24f4bbbd15ab3ccb2b400d22f038f13e1f")]
 [assembly: System.Reflection.AssemblyProductAttribute("WPFDarts")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WPFDarts")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
