@@ -8,7 +8,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Title="_501" Height="900" Width="1600" FontSize="32">
+        Title="_501" FontSize="32">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
