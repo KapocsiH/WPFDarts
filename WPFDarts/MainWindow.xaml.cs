@@ -21,10 +21,16 @@ namespace WPFDarts
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Shanghai_Click(object sender, RoutedEventArgs e)
         {
             Shanghai shanghai = new Shanghai();
             shanghai.Show();
+        }
+
+        private void _501_Click(object sender, RoutedEventArgs e)
+        {
+            _501 _501 = new _501();
+            _501.Show();
         }
     }
 }
