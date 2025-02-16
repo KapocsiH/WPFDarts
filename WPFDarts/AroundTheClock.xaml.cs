@@ -16,14 +16,13 @@ namespace WPFDarts
 {
     public partial class AroundTheClock : Window
     {
-        private const double DartboardRadius = 276;
-        private const double InnerBullseyeRadius = 12;
-        private const double OuterBullseyeInnerRadius = 12;
-        private const double OuterBullseyeOuterRadius = 25;
-        private const double TripleRingInnerRadius = 160;
-        private const double TripleRingOuterRadius = 173;
-        private const double DoubleRingInnerRadius = 263;
-        private const double DoubleRingOuterRadius = 276;
+        private const double DartboardRadius = 346;
+        private const double InnerBullseyeRadius = 14;
+        private const double OuterBullseyeOuterRadius = 33;
+        private const double TripleRingInnerRadius = 198;
+        private const double TripleRingOuterRadius = 218;
+        private const double DoubleRingInnerRadius = 328;
+        private const double DoubleRingOuterRadius = 346;
         private const double DegreePerSection = 18;
         private const double RotationOffset = 9;
         private readonly int[] sectorOrder = { 11, 14, 9, 12, 5, 20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 7, 16, 8 };
