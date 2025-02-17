@@ -16,8 +16,8 @@
         </Grid.ColumnDefinitions>
         <Image Name="DartboardImage" Source="Blade6.jpg" MouseLeftButtonDown="DartboardImage_MouseLeftButtonDown"/>
         <Label Name="cursorp" Grid.Column="1" Content=""/>
-        <TextBlock Grid.Column="1" Margin="0 70 0 0" Name="Player1ScoreTextBlock"/>
-        <TextBlock Grid.Column="1" Margin="0 90 0 0" Name="Player2ScoreTextBlock"/>
-        <TextBox Name="ScoreTextBox" Grid.Column="1" Margin="0 110 0 0"/>
+        <Label Name="Player1ScoreLabel" Grid.Column="1" Content="Player 1 Score: 501" Margin="0 70 0 0"/>
+        <Label Name="Player2ScoreLabel" Grid.Column="1" Content="Player 2 Score: 501" Margin="0 110 0 0"/>
+        <Label Name="CurrentPlayerLabel" Grid.Column="1" Content="Current Player: 1" Margin="0 150 0 0"/>
     </Grid>
 </Window>
