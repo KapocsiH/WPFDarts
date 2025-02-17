@@ -5,32 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFDarts"
         mc:Ignorable="d"
-        Title="AroundTheClock" Height="500" Width="800">
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Title="Around the Clock" Height="900" Width="1600" FontSize="32">
     <Grid>
-        <Label Content="Hátralévő szektorok" FontSize="16" FontWeight="Bold" Margin="630,0,10,454" Width="160" Height="30"/>
-        <ListBox Height="450" Width="100" Margin="660,35,40,-1" >
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>2</ListBoxItem>
-            <ListBoxItem>3</ListBoxItem>
-            <ListBoxItem>4</ListBoxItem>
-            <ListBoxItem>5</ListBoxItem>
-            <ListBoxItem>6</ListBoxItem>
-            <ListBoxItem>7</ListBoxItem>
-            <ListBoxItem>8</ListBoxItem>
-            <ListBoxItem>9</ListBoxItem>
-            <ListBoxItem>10</ListBoxItem>
-            <ListBoxItem>11</ListBoxItem>
-            <ListBoxItem>12</ListBoxItem>
-            <ListBoxItem>13</ListBoxItem>
-            <ListBoxItem>14</ListBoxItem>
-            <ListBoxItem>15</ListBoxItem>
-            <ListBoxItem>16</ListBoxItem>
-            <ListBoxItem>17</ListBoxItem>
-            <ListBoxItem>18</ListBoxItem>
-            <ListBoxItem>19</ListBoxItem>
-            <ListBoxItem>20</ListBoxItem>
-            <ListBoxItem>25</ListBoxItem>
-            <ListBoxItem>50</ListBoxItem>
-        </ListBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Name="DartboardImage" Source="Blade6.jpg" MouseLeftButtonDown="DartboardImage_MouseLeftButtonDown"/>
+        <StackPanel Grid.Column="1" Margin="20">
+            <Label x:Name="CurrentPlayerLabel" Content="Current Player: 1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontSize="32"/>
+            <Label Name="cursorp" Content=""/>
+            <TextBlock x:Name="CurrentPlayerTextBlock" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="Player 1 Targets:" FontSize="24" Margin="20,20,0,0"/>
+            <ListBox Name="Player1TargetsList" FontSize="24" Height="250"/>
+            <Label Content="Player 2 Targets:" FontSize="24" Margin="20,20,0,0"/>
+            <ListBox Name="Player2TargetsList" FontSize="24" Height="250"/>
+        </StackPanel>
     </Grid>
 </Window>

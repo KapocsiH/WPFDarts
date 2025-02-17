@@ -32,5 +32,11 @@ namespace WPFDarts
             _501 _501 = new _501();
             _501.Show();
         }
+
+        private void AroundTheClock_Click(object sender, RoutedEventArgs e)
+        {
+            AroundTheClock AroundTheClock = new AroundTheClock();
+            AroundTheClock.Show();
+        }
     }
 }
