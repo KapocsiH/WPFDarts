@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows;
 
 namespace WPFDarts
 {
@@ -29,12 +19,14 @@ namespace WPFDarts
         private int currentPlayer = 1;
         private int player1Target = 1;
         private int player2Target = 1;
+        private int throwCount = 0;
 
         public AroundTheClock()
         {
             InitializeComponent();
             this.MouseMove += OnMouseMove;
             InitializeTargetListBoxes();
+            UpdateCurrentPlayerDisplay();
         }
 
         private void InitializeTargetListBoxes()
@@ -45,8 +37,8 @@ namespace WPFDarts
                 Player2TargetsList.Items.Add(i);
             }
             Player1TargetsList.Items.Add(25);
-            Player2TargetsList.Items.Add(50);
-            Player1TargetsList.Items.Add(25);
+            Player2TargetsList.Items.Add(25);
+            Player1TargetsList.Items.Add(50);
             Player2TargetsList.Items.Add(50);
         }
 
@@ -72,7 +64,13 @@ namespace WPFDarts
                 HandlePlayerTurn(ref player2Target, Player2TargetsList, sector, distance);
             }
 
-            currentPlayer = currentPlayer == 1 ? 2 : 1;
+            throwCount++;
+            if (throwCount >= 3)
+            {
+                throwCount = 0;
+                currentPlayer = currentPlayer == 1 ? 2 : 1;
+                UpdateCurrentPlayerDisplay();
+            }
         }
 
         private void HandlePlayerTurn(ref int playerTarget, ListBox playerTargetsList, int sector, double distance)
@@ -159,9 +157,16 @@ namespace WPFDarts
             player1Target = 1;
             player2Target = 1;
             currentPlayer = 1;
+            throwCount = 0;
             Player1TargetsList.Items.Clear();
             Player2TargetsList.Items.Clear();
             InitializeTargetListBoxes();
+            UpdateCurrentPlayerDisplay();
+        }
+
+        private void UpdateCurrentPlayerDisplay()
+        {
+            CurrentPlayerLabel.Content = $"Current Player: {currentPlayer}";
         }
     }
 }
