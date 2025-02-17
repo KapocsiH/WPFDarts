@@ -29,6 +29,10 @@ namespace WPFDarts
         private const double RotationOffset = 9;
         private readonly int[] sectorOrder = { 11, 14, 9, 12, 5, 20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 7, 16, 8 };
 
+        private int player1Score;
+        private int player2Score;
+        private int currentPlayer;
+
         public _501()
         {
             InitializeComponent();
