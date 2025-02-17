@@ -8,15 +8,17 @@
         WindowState="Maximized"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Title="Around the Clock" FontSize="32">
+        Title="Around the Clock" Height="900" Width="1600" FontSize="32">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Image Name="DartboardImage" Source="Blade6.jpg" MouseLeftButtonDown="DartboardImage_MouseLeftButtonDown"/>
         <StackPanel Grid.Column="1" Margin="20">
+            <Label x:Name="CurrentPlayerLabel" Content="Current Player: 1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontSize="32"/>
             <Label Name="cursorp" Content=""/>
+            <TextBlock x:Name="CurrentPlayerTextBlock" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
             <Label Content="Player 1 Targets:" FontSize="24" Margin="20,20,0,0"/>
             <ListBox Name="Player1TargetsList" FontSize="24" Height="250"/>
             <Label Content="Player 2 Targets:" FontSize="24" Margin="20,20,0,0"/>
