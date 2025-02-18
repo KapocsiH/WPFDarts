@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Windows.Xps;
 
 namespace WPFDarts
@@ -53,6 +54,7 @@ namespace WPFDarts
             }
             int sector = GetSector(bullseye, clickPosition);
             int score = CalculateScore(distance, sector);
+            MessageBox.Show($"You clicked on sector: {sector}, Score: {score}");
 
             if (currentPlayer == 1)
             {
