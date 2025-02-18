@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -34,6 +35,8 @@ namespace WPFDarts
         private int player2Score = 501;
         private int currentPlayer = 1;
         private int throwCount = 0;
+        private DispatcherTimer timer;
+        private Random rand;
 
         public _501()
         {
@@ -41,6 +44,22 @@ namespace WPFDarts
             this.MouseMove += OnMouseMove;
             UpdateCurrentPlayerDisplay();
             this.Cursor = Cursors.None;
+
+            rand = new Random();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(50);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            double offsetX = rand.NextDouble() * 10 - 15;
+            double offsetY = rand.NextDouble() * 10 - 15;
+
+            var position = Mouse.GetPosition(this);
+            Canvas.SetLeft(CursorRing, position.X - CursorRing.Width / 2 + offsetX);
+            Canvas.SetTop(CursorRing, position.Y - CursorRing.Height / 2 + offsetY);
         }
 
         private void DartboardImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -65,24 +84,48 @@ namespace WPFDarts
 
             if (currentPlayer == 1)
             {
-                player1Score -= score;
-                Player1ScoreLabel.Content = $"Player 1 Score: {player1Score}";
-                if (player1Score <= 0)
+                if (player1Score - score == 0)
                 {
+                    player1Score -= score;
+                    Player1ScoreLabel.Content = $"Player 1 Score: {player1Score}";
                     MessageBox.Show("Player 1 wins!");
                     ResetGame();
                     return;
                 }
+                else if (player1Score - score < 0)
+                {
+                    MessageBox.Show("Player 1 missed the exact score!");
+                    currentPlayer = 2;
+                    UpdateCurrentPlayerDisplay();
+                    return;
+                }
+                else
+                {
+                    player1Score -= score;
+                    Player1ScoreLabel.Content = $"Player 1 Score: {player1Score}";
+                }
             }
             else
             {
-                player2Score -= score;
-                Player2ScoreLabel.Content = $"Player 2 Score: {player2Score}";
-                if (player2Score <= 0)
+                if (player2Score - score == 0)
                 {
+                    player2Score -= score;
+                    Player2ScoreLabel.Content = $"Player 2 Score: {player2Score}";
                     MessageBox.Show("Player 2 wins!");
                     ResetGame();
                     return;
+                }
+                else if (player2Score - score < 0)
+                {
+                    MessageBox.Show("Player 2 missed the exact score!");
+                    currentPlayer = 1;
+                    UpdateCurrentPlayerDisplay();
+                    return;
+                }
+                else
+                {
+                    player2Score -= score;
+                    Player2ScoreLabel.Content = $"Player 2 Score: {player2Score}";
                 }
             }
 
