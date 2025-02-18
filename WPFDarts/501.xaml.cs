@@ -40,11 +40,18 @@ namespace WPFDarts
             InitializeComponent();
             this.MouseMove += OnMouseMove;
             UpdateCurrentPlayerDisplay();
+            this.Cursor = Cursors.None;
         }
 
         private void DartboardImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point clickPosition = e.GetPosition(DartboardImage);
+
+            Random rand = new Random();
+            double offsetX = rand.NextDouble() * 10 - 15;
+            double offsetY = rand.NextDouble() * 10 - 15;
+            clickPosition.Offset(offsetX, offsetY);
+
             Point bullseye = new Point(DartboardImage.ActualWidth / 2, DartboardImage.ActualHeight / 2);
             double distance = CalculateDistance(bullseye, clickPosition);
             if (distance > DartboardRadius)
@@ -92,6 +99,9 @@ namespace WPFDarts
         {
             var position = e.GetPosition(this);
             cursorp.Content = $"Cursor Position: X = {position.X}\n Y = {position.Y}";
+
+            Canvas.SetLeft(CursorRing, position.X - CursorRing.Width / 2);
+            Canvas.SetTop(CursorRing, position.Y - CursorRing.Height / 2);
         }
 
         private double CalculateDistance(Point center, Point mousePosition)
@@ -135,6 +145,11 @@ namespace WPFDarts
         private void UpdateCurrentPlayerDisplay()
         {
             CurrentPlayerLabel.Content = $"Current Player: {currentPlayer}";
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
