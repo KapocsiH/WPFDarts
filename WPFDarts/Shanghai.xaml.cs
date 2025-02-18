@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace WPFDarts
@@ -51,27 +39,32 @@ namespace WPFDarts
         {
             InitializeComponent();
             this.MouseMove += OnMouseMove;
-            UpdateRoundInfo();
-            _timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMilliseconds(50) // Adjust shake speed
-            };
+            roundPlayer1.Content = $"(Round {currentRound}) Player 1";
+            roundPlayer2.Content = $"(Round {currentRound}) Player 2";
+            _timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(50)};
             _timer.Tick += ShakeCursor;
             _timer.Start();
+            this.Deactivated += Shanghai_Deactivated;
+            this.Closed += Shanghai_Closed;
+        }
+        private void Shanghai_Deactivated(object sender, EventArgs e)
+        {
+            if (_timer.IsEnabled) _timer.Stop();
+        }
+        private void Shanghai_Closed(object sender, EventArgs e)
+        {
+            if (_timer.IsEnabled) _timer.Stop();
         }
         [DllImport("user32.dll")]
         private static extern bool SetCursorPos(int X, int Y);
-
         [DllImport("user32.dll")]
         private static extern bool GetCursorPos(out POINT lpPoint);
-
         [StructLayout(LayoutKind.Sequential)]
         public struct POINT
         {
             public int X;
             public int Y;
         }
-
         private void ShakeCursor(object sender, EventArgs e)
         {
             if (IsMouseOverDartboard())
@@ -79,7 +72,6 @@ namespace WPFDarts
                 GetCursorPos(out POINT cursorPos);
                 int newX = cursorPos.X + _random.Next(-_shakeRange, _shakeRange);
                 int newY = cursorPos.Y + _random.Next(-_shakeRange, _shakeRange);
-
                 SetCursorPos(newX, newY);
             }
         }
@@ -97,70 +89,95 @@ namespace WPFDarts
             double distance = CalculateDistance(bullseye, clickPosition);
             if (distance > DartboardRadius)
             {
-                MessageBox.Show("Outside Dartboard");
+                MessageBox.Show("Hát ez fakapu ;)");
+                RegisterThrow();
                 return;
             }
             int sector = GetSector(bullseye, clickPosition);
             int score = CalculateScore(distance, sector);
-
             if (sector == currentRound)
             {
                 if (currentPlayer == 1)
                 {
                     player1Score += score;
-                    player1score.Content = $"Player 1 Score: {player1Score}";
-                    if (score == currentRound) player1HitSingle = true;
-                    if (score == currentRound * 2) player1HitDouble = true;
-                    if (score == currentRound * 3) player1HitTriple = true;
+                    player1score.Content = $"{player1Score}";
+                    if (score == currentRound)
+                    {
+                        player1HitSingle = true;
+                        // player1Single.IsChecked = true;
+                    }
+                    if (score == currentRound * 2)
+                    {
+                        player1HitDouble = true;
+                        // player1Double.IsChecked = true;
+                    }
+                    if (score == currentRound * 3)
+                    {
+                        player1HitTriple = true;
+                        // player1Triple.IsChecked = true;
+                    }
                 }
                 else
                 {
                     player2Score += score;
-                    player2score.Content = $"Player 2 Score: {player2Score}";
-                    if (score == currentRound) player2HitSingle = true;
-                    if (score == currentRound * 2) player2HitDouble = true;
-                    if (score == currentRound * 3) player2HitTriple = true;
+                    player2score.Content = $"{player2Score}";
+                    if (score == currentRound)
+                    {
+                        player2HitSingle = true;
+                        // player2Single.IsChecked = true;
+                    }
+                    if (score == currentRound * 2)
+                    {
+                        player2HitDouble = true;
+                        // player2Double.IsChecked = true;
+                    }
+                    if (score == currentRound * 3)
+                    {
+                        player2HitTriple = true;
+                        // player2Triple.IsChecked = true;
+                    }
                 }
             }
-
+            RegisterThrow();
+        }
+        private void RegisterThrow()
+        {
             throwCount++;
             if (throwCount >= 3)
             {
                 if (player1HitSingle && player1HitDouble && player1HitTriple)
                 {
-                    MessageBox.Show("Player 1 wins by hitting single, double, and triple!");
-                    EndGame();
+                    MessageBox.Show("Player 1 nyert!");
                     return;
                 }
                 if (player2HitSingle && player2HitDouble && player2HitTriple)
                 {
-                    MessageBox.Show("Player 2 wins by hitting single, double, and triple!");
-                    EndGame();
+                    MessageBox.Show("Player 2 nyert!");
                     return;
                 }
-
                 throwCount = 0;
                 currentPlayer = currentPlayer == 1 ? 2 : 1;
                 if (currentPlayer == 1)
                 {
                     currentRound++;
+
                     if (currentRound > 7)
                     {
                         string winner = player1Score > player2Score ? "Player 1" : "Player 2";
-                        MessageBox.Show($"Game over! Winner: {winner}");
-                        EndGame();
+                        MessageBox.Show($"A játéknak vége! {winner} nyert!");
                         return;
                     }
                     player1HitSingle = player1HitDouble = player1HitTriple = false;
                     player2HitSingle = player2HitDouble = player2HitTriple = false;
                 }
-                UpdateRoundInfo();
+                roundPlayer1.Content = $"(Round {currentRound}) Player 1";
+                roundPlayer2.Content = $"(Round {currentRound}) Player 2";
             }
         }
         private Point ApplyRandomOffset(Point originalPoint)
         {
-            double offsetX = random.NextDouble() * 20 - 20; // Random offset between -10 and 10
-            double offsetY = random.NextDouble() * 20 - 20; // Random offset between -10 and 10
+            double offsetX = random.NextDouble() * 20 - 15;
+            double offsetY = random.NextDouble() * 20 - 15;
             return new Point(originalPoint.X + offsetX, originalPoint.Y + offsetY);
         }
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -168,7 +185,6 @@ namespace WPFDarts
             var position = e.GetPosition(this); // ez csak debughoz
             cursorp.Content = $"Cursor Position: X = {position.X}\n Y = {position.Y}";
         }
-
         private double CalculateDistance(Point center, Point mousePosition)
         {
             double distanceX = mousePosition.X - center.X;
@@ -176,7 +192,6 @@ namespace WPFDarts
             double distanceFromCenter = Math.Sqrt(Math.Pow(distanceX, 2) + Math.Pow(distanceY, 2));
             return distanceFromCenter;
         }
-
         private int GetSector(Point center, Point mousePosition)
         {
             double angle = Math.Atan2(mousePosition.Y - center.Y, mousePosition.X - center.X) * (180 / Math.PI) + 180;
@@ -184,7 +199,6 @@ namespace WPFDarts
             int sectorIndex = (int)(angle / DegreePerSection);
             return sectorOrder[sectorIndex];
         }
-
         private int CalculateScore(double distance, int sector)
         {
             int score = 0;
@@ -195,18 +209,6 @@ namespace WPFDarts
             else score = sector;
             return score;
         }
-
-        private void UpdateRoundInfo()
-        {
-            roundInfo.Content = $"Round: {currentRound}, Player: {currentPlayer}";
-        }
-
-        private void EndGame()
-        {
-            newGameButton.Visibility = Visibility.Visible;
-            mainMenuButton.Visibility = Visibility.Visible;
-        }
-
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             player1Score = 0;
@@ -216,16 +218,13 @@ namespace WPFDarts
             currentRound = 1;
             player1HitSingle = player1HitDouble = player1HitTriple = false;
             player2HitSingle = player2HitDouble = player2HitTriple = false;
-            player1score.Content = "Player 1 Score: 0";
-            player2score.Content = "Player 2 Score: 0";
-            UpdateRoundInfo();
-            newGameButton.Visibility = Visibility.Hidden;
-            mainMenuButton.Visibility = Visibility.Hidden;
+            player1score.Content = "0";
+            player2score.Content = "0";
+            roundPlayer1.Content = $"(Round 1) Player 1";
+            roundPlayer2.Content = $"(Round 1) Player 2";
         }
-
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            // Navigate back to the main window
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
