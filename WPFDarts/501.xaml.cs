@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,47 +31,62 @@ namespace WPFDarts
         private const double DegreePerSection = 18;
         private const double RotationOffset = 9;
         private readonly int[] sectorOrder = { 11, 14, 9, 12, 5, 20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 7, 16, 8 };
-
         private int player1Score = 501;
         private int player2Score = 501;
         private int currentPlayer = 1;
         private int throwCount = 0;
         private DispatcherTimer timer;
         private Random rand;
-
+        private Random random = new Random();
+        private DispatcherTimer _timer;
+        private Random _random = new Random();
+        private int _shakeRange = 10;
         public _501()
         {
             InitializeComponent();
             this.MouseMove += OnMouseMove;
             UpdateCurrentPlayerDisplay();
             this.Cursor = Cursors.None;
-
-            rand = new Random();
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(50);
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(50) // Adjust shake speed
+            };
+            _timer.Tick += ShakeCursor;
+            _timer.Start();
         }
-
-        private void Timer_Tick(object sender, EventArgs e)
+        [DllImport("user32.dll")]
+        private static extern bool SetCursorPos(int X, int Y);
+        [DllImport("user32.dll")]
+        private static extern bool GetCursorPos(out POINT lpPoint);
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT
         {
-            double offsetX = rand.NextDouble() * 10 - 15;
-            double offsetY = rand.NextDouble() * 10 - 15;
-
-            var position = Mouse.GetPosition(this);
-            Canvas.SetLeft(CursorRing, position.X - CursorRing.Width / 2 + offsetX);
-            Canvas.SetTop(CursorRing, position.Y - CursorRing.Height / 2 + offsetY);
+            public int X;
+            public int Y;
         }
-
+        private void ShakeCursor(object sender, EventArgs e)
+        {
+            if (IsMouseOverDartboard())
+            {
+                GetCursorPos(out POINT cursorPos);
+                int newX = cursorPos.X + _random.Next(-_shakeRange, _shakeRange);
+                int newY = cursorPos.Y + _random.Next(-_shakeRange, _shakeRange);
+                SetCursorPos(newX, newY);
+            }
+        }
+        private bool IsMouseOverDartboard()
+        {
+            Point mousePosition = Mouse.GetPosition(DartboardImage);
+            return mousePosition.X >= 0 && mousePosition.X <= DartboardImage.ActualWidth &&
+                   mousePosition.Y >= 0 && mousePosition.Y <= DartboardImage.ActualHeight;
+        }
         private void DartboardImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point clickPosition = e.GetPosition(DartboardImage);
-
             Random rand = new Random();
             double offsetX = rand.NextDouble() * 10 - 15;
             double offsetY = rand.NextDouble() * 10 - 15;
             clickPosition.Offset(offsetX, offsetY);
-
             Point bullseye = new Point(DartboardImage.ActualWidth / 2, DartboardImage.ActualHeight / 2);
             double distance = CalculateDistance(bullseye, clickPosition);
             if (distance > DartboardRadius)
@@ -81,7 +97,6 @@ namespace WPFDarts
             int sector = GetSector(bullseye, clickPosition);
             int score = CalculateScore(distance, sector);
             MessageBox.Show($"You clicked on sector: {sector}, Score: {score}");
-
             if (currentPlayer == 1)
             {
                 if (player1Score - score == 0)
@@ -128,7 +143,6 @@ namespace WPFDarts
                     Player2ScoreLabel.Content = $"Player 2 Score: {player2Score}";
                 }
             }
-
             throwCount++;
             if (throwCount >= 1)
             {
@@ -137,16 +151,13 @@ namespace WPFDarts
                 UpdateCurrentPlayerDisplay();
             }
         }
-
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             var position = e.GetPosition(this);
             cursorp.Content = $"Cursor Position: X = {position.X}\n Y = {position.Y}";
-
             Canvas.SetLeft(CursorRing, position.X - CursorRing.Width / 2);
             Canvas.SetTop(CursorRing, position.Y - CursorRing.Height / 2);
         }
-
         private double CalculateDistance(Point center, Point mousePosition)
         {
             double distanceX = mousePosition.X - center.X;
@@ -154,7 +165,6 @@ namespace WPFDarts
             double distanceFromCenter = Math.Sqrt(Math.Pow(distanceX, 2) + Math.Pow(distanceY, 2));
             return distanceFromCenter;
         }
-
         private int GetSector(Point center, Point mousePosition)
         {
             double angle = Math.Atan2(mousePosition.Y - center.Y, mousePosition.X - center.X) * (180 / Math.PI) + 180;
@@ -162,7 +172,6 @@ namespace WPFDarts
             int sectorIndex = (int)(angle / DegreePerSection);
             return sectorOrder[sectorIndex];
         }
-
         private int CalculateScore(double distance, int sector)
         {
             int score = 0;
@@ -173,7 +182,6 @@ namespace WPFDarts
             else score = sector;
             return score;
         }
-
         private void ResetGame()
         {
             player1Score = 501;
@@ -184,12 +192,10 @@ namespace WPFDarts
             Player2ScoreLabel.Content = $"Player 2 Score: {player2Score}";
             UpdateCurrentPlayerDisplay();
         }
-
         private void UpdateCurrentPlayerDisplay()
         {
             CurrentPlayerLabel.Content = $"Current Player: {currentPlayer}";
         }
-
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

@@ -10,11 +10,21 @@
         ResizeMode="NoResize"
         Title="Shanghai" Height="900" Width="1600" FontSize="32">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image Name="DartboardImage" Source="Blade6.jpg" MouseLeftButtonDown="DartboardImage_MouseLeftButtonDown"/>
-        <Label Name="cursorp" Grid.Column="1" Content=""/>
+        <Image Grid.RowSpan="3" Name="DartboardImage" Source="Blade6.jpg" MouseLeftButtonDown="DartboardImage_MouseLeftButtonDown"/>
+        <Label Name="cursorp" Grid.Column="1" Grid.Row="1" Content=""/>
+        <Label Name="player1score" Grid.Column="1" Content="Player 1: "/>
+        <Label Name="player2score" Grid.Column="1" Grid.Row="2" Content="Player 2: "/>
+        <Label Name="roundInfo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70,0,0"/>
+        <Button Name="newGameButton" Grid.Row="1" Grid.Column="1" Content="New Game" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="NewGameButton_Click"/>
+        <Button Name="mainMenuButton" Grid.Row="1" Grid.Column="1" Content="Main Menu" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="100,0,0,10" Click="MainMenuButton_Click"/>
     </Grid>
 </Window>
