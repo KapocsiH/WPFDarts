@@ -1,22 +1,20 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace WPFDarts
 {
-    /// <summary>
-    /// Interaction logic for Shanghai.xaml
-    /// </summary>
     public partial class Shanghai : Window
     {
-        private const double DartboardRadius = 276;
-        private const double InnerBullseyeRadius = 10;
-        private const double OuterBullseyeOuterRadius = 25;
-        private const double TripleRingInnerRadius = 159;
-        private const double TripleRingOuterRadius = 173;
-        private const double DoubleRingInnerRadius = 263;
-        private const double DoubleRingOuterRadius = 276;
+        private const double DartboardRadius = 346;
+        private const double InnerBullseyeRadius = 14;
+        private const double OuterBullseyeOuterRadius = 33;
+        private const double TripleRingInnerRadius = 198;
+        private const double TripleRingOuterRadius = 218;
+        private const double DoubleRingInnerRadius = 328;
+        private const double DoubleRingOuterRadius = 346;
         private const double DegreePerSection = 18;
         private const double RotationOffset = 9;
         private readonly int[] sectorOrder = { 11, 14, 9, 12, 5, 20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 7, 16, 8 };
@@ -39,6 +37,7 @@ namespace WPFDarts
         {
             InitializeComponent();
             this.MouseMove += OnMouseMove;
+            this.Cursor = Cursors.None;
             roundPlayer1.Content = $"(Round {currentRound}) Player 1";
             roundPlayer2.Content = $"(Round {currentRound}) Player 2";
             _timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(50)};
@@ -89,7 +88,6 @@ namespace WPFDarts
             double distance = CalculateDistance(bullseye, clickPosition);
             if (distance > DartboardRadius)
             {
-                MessageBox.Show("Hát ez fakapu ;)");
                 RegisterThrow();
                 return;
             }
@@ -104,17 +102,17 @@ namespace WPFDarts
                     if (score == currentRound)
                     {
                         player1HitSingle = true;
-                        // player1Single.IsChecked = true;
+                        player1Single.Content = "";
                     }
                     if (score == currentRound * 2)
                     {
                         player1HitDouble = true;
-                        // player1Double.IsChecked = true;
+                        player1Double.Content = "";
                     }
                     if (score == currentRound * 3)
                     {
                         player1HitTriple = true;
-                        // player1Triple.IsChecked = true;
+                        player1Triple.Content = "";
                     }
                 }
                 else
@@ -124,17 +122,17 @@ namespace WPFDarts
                     if (score == currentRound)
                     {
                         player2HitSingle = true;
-                        // player2Single.IsChecked = true;
+                        player2Single.Content = "";
                     }
                     if (score == currentRound * 2)
                     {
                         player2HitDouble = true;
-                        // player2Double.IsChecked = true;
+                        player2Double.Content = "";
                     }
                     if (score == currentRound * 3)
                     {
                         player2HitTriple = true;
-                        // player2Triple.IsChecked = true;
+                        player2Triple.Content = "";
                     }
                 }
             }
@@ -160,7 +158,12 @@ namespace WPFDarts
                 if (currentPlayer == 1)
                 {
                     currentRound++;
-
+                    player1Single.Content = "Szimpla";
+                    player2Single.Content = "Szimpla";
+                    player1Double.Content = "Dupla";
+                    player2Double.Content = "Dupla";
+                    player1Triple.Content = "Tripla";
+                    player2Triple.Content = "Tripla";
                     if (currentRound > 7)
                     {
                         string winner = player1Score > player2Score ? "Player 1" : "Player 2";
@@ -183,7 +186,9 @@ namespace WPFDarts
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             var position = e.GetPosition(this); // ez csak debughoz
-            cursorp.Content = $"Cursor Position: X = {position.X}\n Y = {position.Y}";
+            // cursorp.Content = $"Cursor Position: X = {position.X}\n Y = {position.Y}";
+            Canvas.SetLeft(CursorRing, position.X - CursorRing.Width / 2);
+            Canvas.SetTop(CursorRing, position.Y - CursorRing.Height / 2);
         }
         private double CalculateDistance(Point center, Point mousePosition)
         {
@@ -222,6 +227,7 @@ namespace WPFDarts
             player2score.Content = "0";
             roundPlayer1.Content = $"(Round 1) Player 1";
             roundPlayer2.Content = $"(Round 1) Player 2";
+            _timer.Start();
         }
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
