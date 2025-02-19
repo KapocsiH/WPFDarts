@@ -17,14 +17,17 @@
         <Image Name="DartboardImage" Source="Blade6.jpg" MouseLeftButtonDown="DartboardImage_MouseLeftButtonDown"/>
         <StackPanel Grid.Column="1" Margin="20">
             <Label x:Name="CurrentPlayerLabel" Content="Current Player: 1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontSize="32"/>
-            <Label Name="cursorp" Content=""/>
+            <!--<Label Name="cursorp" Content=""/>-->
             <TextBlock x:Name="CurrentPlayerTextBlock" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
             <Label Content="Player 1 Targets:" FontSize="24" Margin="20,20,0,0"/>
             <ListBox Name="Player1TargetsList" FontSize="24" Height="250"/>
             <Label Content="Player 2 Targets:" FontSize="24" Margin="20,20,0,0"/>
             <ListBox Name="Player2TargetsList" FontSize="24" Height="250"/>
             <Button Name="newGameButton" Grid.Row="2" Grid.Column="0" Content="New Game" HorizontalAlignment="Center" VerticalAlignment="Center" Click="NewGameButton_Click"/>
-            <Button Name="mainMenuButton" Grid.Row="2" Grid.Column="2" Content="Main Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Click="MainMenuButton_Click"/>
+            <Button Name="mainMenuButton" Margin="0 10 0 0" Grid.Row="2" Grid.Column="2" Content="Main Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Click="MainMenuButton_Click"/>
         </StackPanel>
+        <Canvas Name="CursorCanvas" IsHitTestVisible="False">
+            <Ellipse Name="CursorRing" Width="30" Height="30" Stroke="Cyan" StrokeThickness="2"/>
+        </Canvas>
     </Grid>
 </Window>

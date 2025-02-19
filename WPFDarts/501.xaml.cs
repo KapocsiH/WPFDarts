@@ -161,7 +161,7 @@ namespace WPFDarts
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             var position = e.GetPosition(this);
-            cursorp.Content = $"Cursor Position: X = {position.X}\n Y = {position.Y}";
+            // cursorp.Content = $"Cursor Position: X = {position.X}\n Y = {position.Y}";
             Canvas.SetLeft(CursorRing, position.X - CursorRing.Width / 2);
             Canvas.SetTop(CursorRing, position.Y - CursorRing.Height / 2);
         }
