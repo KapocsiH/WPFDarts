@@ -100,14 +100,14 @@ namespace WPFDarts
                 if (player1Score - score == 0)
                 {
                     player1Score -= score;
-                    Player1ScoreLabel.Content = $"{player1Name} Pontszám: {player1Score}";
-                    MessageBox.Show($"{player1Name} nyert!");
+                    Player1ScoreLabel.Content = $"player1 Pontszám: {player1Score}";
+                    MessageBox.Show($"player1 nyert!");
                     ResetGame();
                     return;
                 }
                 else if (player1Score - score < 0)
                 {
-                    MessageBox.Show($"{player1Name} besokallt!");
+                    MessageBox.Show($"player1 besokallt!");
                     currentPlayer = 2;
                     UpdateCurrentPlayerDisplay();
                     return;
@@ -115,7 +115,7 @@ namespace WPFDarts
                 else
                 {
                     player1Score -= score;
-                    Player1ScoreLabel.Content = $"{player1Name} Pontszám: {player1Score}";
+                    Player1ScoreLabel.Content = $"player1 Pontszám: {player1Score}";
                 }
             }
             else
@@ -123,14 +123,14 @@ namespace WPFDarts
                 if (player2Score - score == 0)
                 {
                     player2Score -= score;
-                    Player2ScoreLabel.Content = $"{player2Name} Pontszám: {player2Score}";
-                    MessageBox.Show($"{player2Name} besokallt!");
+                    Player2ScoreLabel.Content = $"player2 Pontszám: {player2Score}";
+                    MessageBox.Show($"player2 besokallt!");
                     ResetGame();
                     return;
                 }
                 else if (player2Score - score < 0)
                 {
-                    MessageBox.Show($"{player2Name} besokallt!");
+                    MessageBox.Show($"player2 besokallt!");
                     currentPlayer = 1;
                     UpdateCurrentPlayerDisplay();
                     return;
@@ -138,7 +138,7 @@ namespace WPFDarts
                 else
                 {
                     player2Score -= score;
-                    Player2ScoreLabel.Content = $"{player2Name} Pontszám: {player2Score}";
+                    Player2ScoreLabel.Content = $"player2 Pontszám: {player2Score}";
                 }
             }
             throwCount++;
@@ -195,8 +195,8 @@ namespace WPFDarts
             player2Score = 501;
             currentPlayer = 1;
             throwCount = 0;
-            Player1ScoreLabel.Content = $"{player1Name} Pontszám: {player1Score}";
-            Player2ScoreLabel.Content = $"{player2Name} Pontszám: {player2Score}";
+            Player1ScoreLabel.Content = $"player1 Pontszám: {player1Score}";
+            Player2ScoreLabel.Content = $"player2 Pontszám: {player2Score}";
             UpdateCurrentPlayerDisplay();
         }
         private void UpdateCurrentPlayerDisplay()
