@@ -23,6 +23,8 @@
             <ListBox Name="Player1TargetsList" FontSize="24" Height="250"/>
             <Label Content="Player 2 Targets:" FontSize="24" Margin="20,20,0,0"/>
             <ListBox Name="Player2TargetsList" FontSize="24" Height="250"/>
+            <Button Name="newGameButton" Grid.Row="2" Grid.Column="0" Content="New Game" HorizontalAlignment="Center" VerticalAlignment="Center" Click="NewGameButton_Click"/>
+            <Button Name="mainMenuButton" Grid.Row="2" Grid.Column="2" Content="Main Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Click="MainMenuButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

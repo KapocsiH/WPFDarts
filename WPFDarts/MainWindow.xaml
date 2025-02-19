@@ -12,6 +12,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,10 +20,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Content="Darts" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
-        <Button Content="501" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontSize="24" Width="200" BorderThickness="3" Click="_501_Click" Margin="33,0,34,0"/>
-        <Button Content="Around the Clock" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontSize="24" Width="200" BorderThickness="3" Click="AroundTheClock_Click" Margin="33,71,34,0"/>
-        <Button Content="Shanghai" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontSize="24" Width="200" BorderThickness="3" Click="Shanghai_Click" Margin="33,26,34,0"/>
-        <Button Content="Beállítások" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontSize="24" Width="200" BorderThickness="3" Margin="33,95,34,0" Grid.RowSpan="2" Click="Menu_Click"/>
+        <Button Content="501" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="24" Width="200" BorderThickness="3" Click="_501_Click" Margin="10,0,57,0"/>
+        <Button Content="Around the Clock" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="24" Width="200" BorderThickness="3" Click="AroundTheClock_Click" Margin="10,0,57,0"/>
+        <Button Content="Shanghai" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontSize="24" Width="200" BorderThickness="3" Click="Shanghai_Click" Margin="10,19,57,0"/>
+        <Button Content="Beállítások" Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="24" Width="200" BorderThickness="3" Margin="10,0,57,0" Click="Menu_Click"/>
         <Image Source="Blade6.jpg" Grid.Column="1" Grid.RowSpan="4" Height="500" Width="500" Margin="150,76,-117,-142" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

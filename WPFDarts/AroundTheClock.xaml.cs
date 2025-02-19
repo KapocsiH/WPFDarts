@@ -3,6 +3,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Windows.Threading;
 using System.Runtime.InteropServices;
+using System.Media;
 
 namespace WPFDarts
 {
@@ -94,11 +95,12 @@ namespace WPFDarts
         private void DartboardImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point clickPosition = e.GetPosition(DartboardImage);
+            clickPosition = ApplyRandomOffset(clickPosition);
             Point bullseye = new Point(DartboardImage.ActualWidth / 2, DartboardImage.ActualHeight / 2);
             double distance = CalculateDistance(bullseye, clickPosition);
             if (distance > DartboardRadius)
             {
-                MessageBox.Show("Hát ez fakapu ;)");
+                //MessageBox.Show("Hát ez fakapu ;)");
                 return;
             }
             int sector = GetSector(bullseye, clickPosition);
@@ -119,6 +121,14 @@ namespace WPFDarts
                 UpdateCurrentPlayerDisplay();
             }
         }
+
+        private Point ApplyRandomOffset(Point originalPoint)
+        {
+            double offsetX = random.NextDouble() * 20 - 15;
+            double offsetY = random.NextDouble() * 20 - 15;
+            return new Point(originalPoint.X + offsetX, originalPoint.Y + offsetY);
+        }
+
         private void HandlePlayerTurn(ref int playerTarget, ListBox playerTargetsList, int sector, double distance)
         {
             if (sector == playerTarget)
@@ -149,17 +159,17 @@ namespace WPFDarts
                     }
                     else
                     {
-                        MessageBox.Show($"{currentPlayer}. Játékos eltalálta a {sector}. szektort. Most bullt kell dobnia!");
+                        //MessageBox.Show($"{currentPlayer}. Játékos eltalálta a {sector}. szektort. Most bullt kell dobnia!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show($"{currentPlayer}. Játékos eltalálta a {sector}. szektort. Következő szektor: {playerTarget}");
+                    //MessageBox.Show($"{currentPlayer}. Játékos eltalálta a {sector}. szektort. Következő szektor: {playerTarget}");
                 }
             }
             else
             {
-                MessageBox.Show($"{currentPlayer}. Játékos eltalálta a {sector}. szektort. Jelenlegi szektor: {playerTarget}");
+                //MessageBox.Show($"{currentPlayer}. Játékos eltalálta a {sector}. szektort. Jelenlegi szektor: {playerTarget}");
             }
         }
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -201,17 +211,38 @@ namespace WPFDarts
             Player2TargetsList.Items.Clear();
             InitializeTargetListBoxes();
             UpdateCurrentPlayerDisplay();
+            _timer.Start();
         }
+        private void NewGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            ResetGame();
+        }
+
+        private void MainMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
         private void UpdateCurrentPlayerDisplay()
         {
-            if (currentPlayer == 1)
+            if (player1Name != null && player2Name != null)
             {
-                CurrentPlayerLabel.Content = $"Jelenlegi játékos: {player1Name}";
+                if (currentPlayer == 1)
+                {
+                    CurrentPlayerLabel.Content = $"Jelenlegi játékos: {player1Name}";
+                }
+                else
+                {
+                    CurrentPlayerLabel.Content = $"Jelenlegi játékos: {player2Name}";
+                }
             }
             else
             {
-                CurrentPlayerLabel.Content = $"Jelenlegi játékos: {player2Name}";
+                CurrentPlayerLabel.Content = $"Current Player: {currentPlayer}";
             }
+
         }
     }
 }
