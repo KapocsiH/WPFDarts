@@ -22,22 +22,36 @@ namespace WPFDarts
         private int player1Target = 1;
         private int player2Target = 1;
         private int throwCount = 0;
+        private string player1Name;
+        private string player2Name;
         private Random random = new Random();
         private DispatcherTimer _timer;
         private Random _random = new Random();
         private int _shakeRange = 10;
-        public AroundTheClock()
+        public AroundTheClock(string player1Name, string player2Name)
         {
             InitializeComponent();
+            this.player1Name = player1Name;
+            this.player2Name = player2Name;
             this.MouseMove += OnMouseMove;
             InitializeTargetListBoxes();
             UpdateCurrentPlayerDisplay();
             _timer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromMilliseconds(50) // Adjust shake speed
+                Interval = TimeSpan.FromMilliseconds(50)
             };
             _timer.Tick += ShakeCursor;
             _timer.Start();
+            this.Deactivated += AroundTheClock_Deactivated;
+            this.Closed += AroundTheClock_Closed;
+        }
+        private void AroundTheClock_Deactivated(object sender, EventArgs e)
+        {
+            if (_timer.IsEnabled) _timer.Stop();
+        }
+        private void AroundTheClock_Closed(object sender, EventArgs e)
+        {
+            if (_timer.IsEnabled) _timer.Stop();
         }
         [DllImport("user32.dll")]
         private static extern bool SetCursorPos(int X, int Y);
@@ -130,22 +144,22 @@ namespace WPFDarts
                 {
                     if (distance < InnerBullseyeRadius)
                     {
-                        MessageBox.Show($"Player {currentPlayer} hit the bullseye and won the game!");
+                        MessageBox.Show($"{currentPlayer}. Játékoseltalálta a bullt és nyert!");
                         ResetGame();
                     }
                     else
                     {
-                        MessageBox.Show($"Player {currentPlayer} hit sector {sector}. Now hit the bullseye to win!");
+                        MessageBox.Show($"{currentPlayer}. Játékos eltalálta a {sector}. szektort. Most bullt kell dobnia!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show($"Player {currentPlayer} hit sector {sector}. Next target: {playerTarget}");
+                    MessageBox.Show($"{currentPlayer}. Játékos eltalálta a {sector}. szektort. Következő szektor: {playerTarget}");
                 }
             }
             else
             {
-                MessageBox.Show($"Player {currentPlayer} hit sector {sector}. Current target: {playerTarget}");
+                MessageBox.Show($"{currentPlayer}. Játékos eltalálta a {sector}. szektort. Jelenlegi szektor: {playerTarget}");
             }
         }
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -190,7 +204,14 @@ namespace WPFDarts
         }
         private void UpdateCurrentPlayerDisplay()
         {
-            CurrentPlayerLabel.Content = $"Current Player: {currentPlayer}";
+            if (currentPlayer == 1)
+            {
+                CurrentPlayerLabel.Content = $"Jelenlegi játékos: {player1Name}";
+            }
+            else
+            {
+                CurrentPlayerLabel.Content = $"Jelenlegi játékos: {player2Name}";
+            }
         }
     }
 }
