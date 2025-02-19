@@ -1,21 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Windows.Xps;
 
 namespace WPFDarts
 {
@@ -49,10 +36,18 @@ namespace WPFDarts
             this.Cursor = Cursors.None;
             _timer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromMilliseconds(50) // Adjust shake speed
+                Interval = TimeSpan.FromMilliseconds(50)
             };
             _timer.Tick += ShakeCursor;
             _timer.Start();
+        }
+        private void _501_Deactivated(object sender, EventArgs e)
+        {
+            if (_timer.IsEnabled) _timer.Stop();
+        }
+        private void _501_Closed(object sender, EventArgs e)
+        {
+            if (_timer.IsEnabled) _timer.Stop();
         }
         [DllImport("user32.dll")]
         private static extern bool SetCursorPos(int X, int Y);
@@ -91,25 +86,24 @@ namespace WPFDarts
             double distance = CalculateDistance(bullseye, clickPosition);
             if (distance > DartboardRadius)
             {
-                MessageBox.Show("Outside Dartboard");
+                RegisterThrow();
                 return;
             }
             int sector = GetSector(bullseye, clickPosition);
             int score = CalculateScore(distance, sector);
-            MessageBox.Show($"You clicked on sector: {sector}, Score: {score}");
             if (currentPlayer == 1)
             {
                 if (player1Score - score == 0)
                 {
                     player1Score -= score;
-                    Player1ScoreLabel.Content = $"Player 1 Score: {player1Score}";
-                    MessageBox.Show("Player 1 wins!");
+                    Player1ScoreLabel.Content = $"Player 1 Pontszám: {player1Score}";
+                    MessageBox.Show("Player 1 nyert!");
                     ResetGame();
                     return;
                 }
                 else if (player1Score - score < 0)
                 {
-                    MessageBox.Show("Player 1 missed the exact score!");
+                    MessageBox.Show("Player 1 besokallt!");
                     currentPlayer = 2;
                     UpdateCurrentPlayerDisplay();
                     return;
@@ -117,7 +111,7 @@ namespace WPFDarts
                 else
                 {
                     player1Score -= score;
-                    Player1ScoreLabel.Content = $"Player 1 Score: {player1Score}";
+                    Player1ScoreLabel.Content = $"Player 1 Pontszám: {player1Score}";
                 }
             }
             else
@@ -125,14 +119,14 @@ namespace WPFDarts
                 if (player2Score - score == 0)
                 {
                     player2Score -= score;
-                    Player2ScoreLabel.Content = $"Player 2 Score: {player2Score}";
-                    MessageBox.Show("Player 2 wins!");
+                    Player2ScoreLabel.Content = $"Player 2 Pontszám: {player2Score}";
+                    MessageBox.Show("Player 2 nyert!");
                     ResetGame();
                     return;
                 }
                 else if (player2Score - score < 0)
                 {
-                    MessageBox.Show("Player 2 missed the exact score!");
+                    MessageBox.Show("Player 2 besokallt!");
                     currentPlayer = 1;
                     UpdateCurrentPlayerDisplay();
                     return;
@@ -140,15 +134,24 @@ namespace WPFDarts
                 else
                 {
                     player2Score -= score;
-                    Player2ScoreLabel.Content = $"Player 2 Score: {player2Score}";
+                    Player2ScoreLabel.Content = $"Player 2 Pontszám: {player2Score}";
                 }
             }
             throwCount++;
-            if (throwCount >= 1)
+            if (throwCount >= 3)
             {
                 throwCount = 0;
                 currentPlayer = currentPlayer == 1 ? 2 : 1;
                 UpdateCurrentPlayerDisplay();
+            }
+        }
+        private void RegisterThrow()
+        {
+            throwCount++;
+            if (throwCount >= 3)
+            {
+                throwCount = 0;
+                currentPlayer = currentPlayer == 1 ? 2 : 1;
             }
         }
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -188,13 +191,13 @@ namespace WPFDarts
             player2Score = 501;
             currentPlayer = 1;
             throwCount = 0;
-            Player1ScoreLabel.Content = $"Player 1 Score: {player1Score}";
-            Player2ScoreLabel.Content = $"Player 2 Score: {player2Score}";
+            Player1ScoreLabel.Content = $"Player 1 Pontszám: {player1Score}";
+            Player2ScoreLabel.Content = $"Player 2 Pontszám: {player2Score}";
             UpdateCurrentPlayerDisplay();
         }
         private void UpdateCurrentPlayerDisplay()
         {
-            CurrentPlayerLabel.Content = $"Current Player: {currentPlayer}";
+            CurrentPlayerLabel.Content = $"Jelenlegi játékos: {currentPlayer}";
         }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {

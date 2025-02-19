@@ -21,7 +21,6 @@
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
         <Image Grid.RowSpan="3" Grid.Column="1" Name="DartboardImage" Source="Blade6.jpg" MouseLeftButtonDown="DartboardImage_MouseLeftButtonDown"/>
-        <Label Name="cursorp" Grid.Column="1" Grid.Row="1" Content=""/>
         <Label Name="roundPlayer1" Content="(Round 1) Player 1" HorizontalContentAlignment="Center"/>
         <Label Name="roundPlayer2" Content="(Round 1) Player 2" Grid.Column="2" HorizontalContentAlignment="Center"/>
         <Label Name="player1score" Grid.Column="0" Content="0" FontSize="64" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
@@ -34,5 +33,8 @@
         <Label Name="player2Triple" Margin="0 0 0 10" Grid.Row="1" Grid.Column="2" Content="Tripla" HorizontalContentAlignment="Center" VerticalAlignment="Bottom"/>
         <Button Name="newGameButton" Grid.Row="2" Grid.Column="0" Content="New Game" HorizontalAlignment="Center" VerticalAlignment="Center" Click="NewGameButton_Click"/>
         <Button Name="mainMenuButton" Grid.Row="2" Grid.Column="2" Content="Main Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Click="MainMenuButton_Click"/>
+        <Canvas Name="CursorCanvas" IsHitTestVisible="False">
+            <Ellipse Name="CursorRing" Width="30" Height="30" Stroke="Cyan" StrokeThickness="2"/>
+        </Canvas>
     </Grid>
 </Window>
