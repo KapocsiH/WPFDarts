@@ -30,7 +30,7 @@ namespace WPFDarts
         }
         private void _501_Click(object sender, RoutedEventArgs e)
         {
-            _501 _501 = new _501();
+            _501 _501 = new _501(playername1, playername2);
             _501.Show();
             this.Close();
         }
@@ -42,7 +42,7 @@ namespace WPFDarts
         }
         private void Shanghai_Click(object sender, RoutedEventArgs e)
         {
-            Shanghai shanghai = new Shanghai();
+            Shanghai shanghai = new Shanghai(playername1, playername2);
             shanghai.Show();
             this.Close();
         }

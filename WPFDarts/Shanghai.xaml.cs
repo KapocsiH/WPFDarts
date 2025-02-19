@@ -20,6 +20,8 @@ namespace WPFDarts
         private readonly int[] sectorOrder = { 11, 14, 9, 12, 5, 20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 7, 16, 8 };
         private int player1Score = 0;
         private int player2Score = 0;
+        private string player1Name;
+        private string player2Name;
         private int currentPlayer = 1;
         private int throwCount = 0;
         private int currentRound = 1;
@@ -33,13 +35,15 @@ namespace WPFDarts
         private DispatcherTimer _timer;
         private Random _random = new Random();
         private int _shakeRange = 10;
-        public Shanghai()
+        public Shanghai(string player1Name, string player2Name)
         {
             InitializeComponent();
+            this.player1Name = player1Name;
+            this.player2Name = player2Name;
             this.MouseMove += OnMouseMove;
             this.Cursor = Cursors.None;
-            roundPlayer1.Content = $"(Round {currentRound}) Player 1";
-            roundPlayer2.Content = $"(Round {currentRound}) Player 2";
+            roundPlayer1.Content = $"(Round {currentRound}) {player1Name}";
+            roundPlayer2.Content = $"(Round {currentRound}) {player2Name}";
             _timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(50)};
             _timer.Tick += ShakeCursor;
             _timer.Start();
@@ -145,12 +149,12 @@ namespace WPFDarts
             {
                 if (player1HitSingle && player1HitDouble && player1HitTriple)
                 {
-                    MessageBox.Show("Player 1 nyert!");
+                    MessageBox.Show($"{player1Name} nyert!");
                     return;
                 }
                 if (player2HitSingle && player2HitDouble && player2HitTriple)
                 {
-                    MessageBox.Show("Player 2 nyert!");
+                    MessageBox.Show($"{player2Name} nyert!");
                     return;
                 }
                 throwCount = 0;
@@ -166,15 +170,15 @@ namespace WPFDarts
                     player2Triple.Content = "Tripla";
                     if (currentRound > 7)
                     {
-                        string winner = player1Score > player2Score ? "Player 1" : "Player 2";
+                        string winner = player1Score > player2Score ? $"{player1Name}" : $"{player2Name}";
                         MessageBox.Show($"A játéknak vége! {winner} nyert!");
                         return;
                     }
                     player1HitSingle = player1HitDouble = player1HitTriple = false;
                     player2HitSingle = player2HitDouble = player2HitTriple = false;
                 }
-                roundPlayer1.Content = $"(Round {currentRound}) Player 1";
-                roundPlayer2.Content = $"(Round {currentRound}) Player 2";
+                roundPlayer1.Content = $"(Round {currentRound}) {player1Name}";
+                roundPlayer2.Content = $"(Round {currentRound}) {player2Name}";
             }
         }
         private Point ApplyRandomOffset(Point originalPoint)
@@ -225,8 +229,8 @@ namespace WPFDarts
             player2HitSingle = player2HitDouble = player2HitTriple = false;
             player1score.Content = "0";
             player2score.Content = "0";
-            roundPlayer1.Content = $"(Round 1) Player 1";
-            roundPlayer2.Content = $"(Round 1) Player 2";
+            roundPlayer1.Content = $"(Round 1) {player1Name}";
+            roundPlayer2.Content = $"(Round 1) {player2Name}";
             _timer.Start();
         }
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)

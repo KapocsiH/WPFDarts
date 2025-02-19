@@ -21,6 +21,8 @@ namespace WPFDarts
         private int player1Score = 501;
         private int player2Score = 501;
         private int currentPlayer = 1;
+        private string player1Name;
+        private string player2Name;
         private int throwCount = 0;
         private DispatcherTimer timer;
         private Random rand;
@@ -28,9 +30,11 @@ namespace WPFDarts
         private DispatcherTimer _timer;
         private Random _random = new Random();
         private int _shakeRange = 10;
-        public _501()
+        public _501(string playerName1, string playerName2)
         {
             InitializeComponent();
+            this.player1Name = player1Name;
+            this.player2Name = player2Name;
             this.MouseMove += OnMouseMove;
             UpdateCurrentPlayerDisplay();
             this.Cursor = Cursors.None;
@@ -96,14 +100,14 @@ namespace WPFDarts
                 if (player1Score - score == 0)
                 {
                     player1Score -= score;
-                    Player1ScoreLabel.Content = $"Player 1 Pontszám: {player1Score}";
-                    MessageBox.Show("Player 1 nyert!");
+                    Player1ScoreLabel.Content = $"{player1Name} Pontszám: {player1Score}";
+                    MessageBox.Show($"{player1Name} nyert!");
                     ResetGame();
                     return;
                 }
                 else if (player1Score - score < 0)
                 {
-                    MessageBox.Show("Player 1 besokallt!");
+                    MessageBox.Show($"{player1Name} besokallt!");
                     currentPlayer = 2;
                     UpdateCurrentPlayerDisplay();
                     return;
@@ -111,7 +115,7 @@ namespace WPFDarts
                 else
                 {
                     player1Score -= score;
-                    Player1ScoreLabel.Content = $"Player 1 Pontszám: {player1Score}";
+                    Player1ScoreLabel.Content = $"{player1Name} Pontszám: {player1Score}";
                 }
             }
             else
@@ -119,14 +123,14 @@ namespace WPFDarts
                 if (player2Score - score == 0)
                 {
                     player2Score -= score;
-                    Player2ScoreLabel.Content = $"Player 2 Pontszám: {player2Score}";
-                    MessageBox.Show("Player 2 nyert!");
+                    Player2ScoreLabel.Content = $"{player2Name} Pontszám: {player2Score}";
+                    MessageBox.Show($"{player2Name} besokallt!");
                     ResetGame();
                     return;
                 }
                 else if (player2Score - score < 0)
                 {
-                    MessageBox.Show("Player 2 besokallt!");
+                    MessageBox.Show($"{player2Name} besokallt!");
                     currentPlayer = 1;
                     UpdateCurrentPlayerDisplay();
                     return;
@@ -134,7 +138,7 @@ namespace WPFDarts
                 else
                 {
                     player2Score -= score;
-                    Player2ScoreLabel.Content = $"Player 2 Pontszám: {player2Score}";
+                    Player2ScoreLabel.Content = $"{player2Name} Pontszám: {player2Score}";
                 }
             }
             throwCount++;
@@ -191,13 +195,27 @@ namespace WPFDarts
             player2Score = 501;
             currentPlayer = 1;
             throwCount = 0;
-            Player1ScoreLabel.Content = $"Player 1 Pontszám: {player1Score}";
-            Player2ScoreLabel.Content = $"Player 2 Pontszám: {player2Score}";
+            Player1ScoreLabel.Content = $"{player1Name} Pontszám: {player1Score}";
+            Player2ScoreLabel.Content = $"{player2Name} Pontszám: {player2Score}";
             UpdateCurrentPlayerDisplay();
         }
         private void UpdateCurrentPlayerDisplay()
         {
-            CurrentPlayerLabel.Content = $"Jelenlegi játékos: {currentPlayer}";
+            if (player1Name != null && player2Name != null)
+            {
+                if (currentPlayer == 1)
+                {
+                    CurrentPlayerLabel.Content = $"Jelenlegi játékos: {player1Name}";
+                }
+                else
+                {
+                    CurrentPlayerLabel.Content = $"Jelenlegi játékos: {player2Name}";
+                }
+            }
+            else
+            {
+                CurrentPlayerLabel.Content = $"Jelenlegi játékos: {currentPlayer}";
+            }
         }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
